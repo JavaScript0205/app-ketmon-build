@@ -60,7 +60,7 @@ public class EntranceService {
     }
 
     private void list() {
-        System.out.println("List of floors: ");
+        System.out.println("List of entrance: ");
         printFloors();
         System.out.println();
     }
@@ -100,7 +100,7 @@ public class EntranceService {
     }
 
     private void delete() {
-        System.out.println("Choose deleting floor number: ");
+        System.out.println("Choose deleting entrance number: ");
         printFloors();
         int idx = scanner.nextInt();
         if (idx < 1 || idx > entrances.length) {
