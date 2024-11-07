@@ -22,7 +22,9 @@ public class FloorService {
                 case 2 -> list();
                 case 3 -> update();
                 case 4 -> delete();
-                case 0 -> {return;}
+                case 0 -> {
+                    return;
+                }
                 default -> {
                     System.out.println("Not properly command");
                     crud();
