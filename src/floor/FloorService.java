@@ -1,12 +1,9 @@
 package floor;
 
-import entrance.Entrance;
-
 import java.util.Scanner;
 
 public class FloorService {
     private Scanner scanner = new Scanner(System.in);
-    private static int floorCount = 0;
 
     private Floor[] floors = new Floor[10];
 
@@ -30,28 +27,10 @@ public class FloorService {
         }
     }
 
-    private boolean isDuplicate(String name) {
-        for (int i = 0; i < floorCount; i++) {
-            if (floors[i].equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     //edge cases -> unique name
     private void create() {
         System.out.println("Enter floor name: ");
         String name = scanner.nextLine();
-        while (true) {
-            if (isDuplicate(name)) {
-                System.out.println("This name is already taken. Please enter a unique name.");
-            } else {
-                floors[floorCount++] = new Floor(name);
-                System.out.println("Entrance created with name: " + name);
-                break;
-            }
-        }
         Floor floor = new Floor(name);
 
         boolean full = true;
@@ -65,8 +44,7 @@ public class FloorService {
 
         if (full) {
             Floor[] newFloors = new Floor[floors.length * 2];
-            for (int i = 0; i < floors.length; i++)
-                newFloors[i] = floors[i];
+            System.arraycopy(floors, 0, newFloors, 0, floors.length);
 
             newFloors[floors.length] = floor;
             floors = newFloors;
@@ -94,15 +72,6 @@ public class FloorService {
             scanner = new Scanner(System.in);
             System.out.println("Enter new name");
             String newName = scanner.nextLine();
-            while (true) {
-                if (isDuplicate(newName)) {
-                    System.out.println("This name is already taken. Please enter a unique name.");
-                } else {
-                    floors[floorCount++] = new Floor(newName);
-                    System.out.println("Entrance created with name: " + newName);
-                    break;
-                }
-            }
             Floor floor = floors[idx - 1];
             if (floor == null) {
                 System.out.println("Enter correct number");

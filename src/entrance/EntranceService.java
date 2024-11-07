@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class EntranceService {
     private Scanner scanner = new Scanner(System.in);
-    private static int entranceCount = 0;
 
     private Entrance[] entrances = new Entrance[5];
 
@@ -28,28 +27,10 @@ public class EntranceService {
         }
     }
 
-    private boolean isDuplicate(String name) {
-        for (int i = 0; i < entranceCount; i++) {
-            if (entrances[i].equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     //edge cases -> unique name
     private void create() {
         System.out.println("Enter entrance name: ");
         String name = scanner.nextLine();
-        while (true) {
-            if (isDuplicate(name)) {
-                System.out.println("This name is already taken. Please enter a unique name.");
-            } else {
-                entrances[entranceCount++] = new Entrance(name);
-                System.out.println("Entrance created with name: " + name);
-                break;
-            }
-        }
         Entrance entrance = new Entrance(name);
 
         boolean full = true;
@@ -63,8 +44,7 @@ public class EntranceService {
 
         if (full) {
             Entrance[] newEntrances = new Entrance[entrances.length * 2];
-            for (int i = 0; i < entrances.length; i++)
-                newEntrances[i] = entrances[i];
+            System.arraycopy(entrances, 0, newEntrances, 0, entrances.length);
 
             newEntrances[entrances.length] = entrance;
             entrances = newEntrances;
@@ -91,15 +71,6 @@ public class EntranceService {
             scanner = new Scanner(System.in);
             System.out.println("Enter new name");
             String newName = scanner.nextLine();
-            while (true) {
-                if (isDuplicate(newName)) {
-                    System.out.println("This name is already taken. Please enter a unique name.");
-                } else {
-                    entrances[entranceCount++] = new Entrance(newName);
-                    System.out.println("Entrance created with name: " + newName);
-                    break;
-                }
-            }
             Entrance entrance = entrances[idx - 1];
             if (entrance == null) {
                 System.out.println("Enter correct number");
