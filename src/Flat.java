@@ -1,3 +1,6 @@
+import entrance.Entrance;
+import floor.Floor;
+
 public class Flat {
     private int livingRoomCount;
     private double area;

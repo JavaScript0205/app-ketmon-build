@@ -1,3 +1,6 @@
+import entrance.Entrance;
+import floor.Floor;
+
 import java.util.Arrays;
 
 public class House {
